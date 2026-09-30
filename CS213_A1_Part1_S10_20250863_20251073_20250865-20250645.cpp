@@ -1,7 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
-#include <Image_Class.h>
+#include "Image_Class.h"
 
 using namespace std;
 
@@ -24,12 +24,11 @@ int main()
         switch (option_no) 
         {
             case 1: 
-                //
+                // Option 1 Implementation
                 break;
 
             case 2: 
             {
-                int x, y;
                 string namefile_user;
                 Image image_after = image_name;
 
@@ -39,9 +38,8 @@ int main()
                         unsigned int green_colour = image_name.getPixel(x, y, 1);
                         unsigned int blue_colour = image_name.getPixel(x, y, 2);
 
-                        unsigned int gray_value = int((red_colour * 0.2126) + (green_colour * 0.7152) + (blue_colour * 0.0722));
+                        unsigned int gray_value = static_cast<unsigned int>((red_colour * 0.2126) + (green_colour * 0.7152) + (blue_colour * 0.0722));
 
-                        // such that 4th parameter of set_pixel is the value of gray colour
                         image_after.setPixel(x, y, 0, gray_value);
                         image_after.setPixel(x, y, 1, gray_value);
                         image_after.setPixel(x, y, 2, gray_value);
@@ -49,7 +47,7 @@ int main()
                 }
 
                 cout << "How would you like to name the image alongside the extension?" << "\n";
-                cin.ignore();
+                cin.ignore(1000, '\n');
                 getline(cin, namefile_user);
 
                 image_after.saveImage(namefile_user);
@@ -57,37 +55,31 @@ int main()
             }
 
             case 3: 
-                //
                 break;
 
             case 4: 
-                //
                 break;
 
             case 5: 
-                //
                 break;
 
             case 6: 
-                //
                 break;
 
             case 7: 
-                //
                 break;
 
             case 8: 
-                //
                 break;
 
             default:
-                cout << "Error in the query choice number you have entered, please try again";
+                cout << "Error in the query choice number you have entered, please try again" << endl;
         }
 
-        cout << "Would you like to continue, type in Yes if you want to continue to do more changes and 'No' if you want to end the program";  
+        cout << "Would you like to continue, type in Yes if you want to continue to do more changes and 'No' if you want to end the program: "; 
         cin >> choice;
 
-        if (choice == "no" || choice == "No" || choice == "nO") {
+        if (choice == "no" || choice == "No" || choice == "nO" || choice == "NO") {
             flag = false;
             break;
         }
